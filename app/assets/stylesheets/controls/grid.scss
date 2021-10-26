@@ -1,0 +1,38 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+
+  &--align-between {
+    justify-content: space-between;
+  }
+}
+
+.column {
+  display: flex;
+
+  &--align-center {
+    align-items: center;
+  }
+}
+
+$spaceamounts: (6, 12, 18, 24, 30);
+$sides: (top, bottom, left, right);
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{$side}-#{$space} {
+      margin-#{$side}: #{$space}px;
+    }
+
+    .p-#{$side}-#{$space} {
+      padding-#{$side}: #{$space}px;
+    }
+  }
+}

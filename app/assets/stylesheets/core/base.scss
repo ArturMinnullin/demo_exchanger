@@ -1,0 +1,17 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font: normal normal 18px/1.5 $font-family;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: normal;
+}
+

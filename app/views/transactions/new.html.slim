@@ -1,0 +1,28 @@
+.main
+  .form
+    h2.m-bottom-30 Calculate amount
+    = form_for :transaction do |f|
+      .field-wrapper.m-bottom-12
+        = f.number_field :value, required: true, class: 'field'
+        = f.label 'Value', class: 'label'
+
+      .row.row--align-between.m-bottom-12
+        .column.column--align-center
+          .small 1 USDT ~ 0.0000000123 BTC
+        .column.column--align-center
+          = image_tag 'exchange.svg', width: '15px'
+
+      .field-wrapper.m-bottom-24
+        = f.number_field :value, class: 'field'
+
+      h2.m-bottom-12 Wallet address
+      .field-wrapper.m-bottom-12
+        = f.number_field :address, required: true, class: 'field'
+        = f.label 'Recepient address', class: 'label'
+
+      .field-wrapper.m-bottom-24
+        = f.label :policy do
+          = f.check_box :policy
+          span I agree with terms of use
+
+      = f.submit 'Next step', class: 'button'
