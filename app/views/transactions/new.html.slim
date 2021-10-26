@@ -1,23 +1,26 @@
 .main
-  .form
-    h2.m-bottom-30 Calculate amount
+  .form data-controller="transaction"
+    h2.m-bottom-24 Calculate amount
     = form_for :transaction do |f|
       .field-wrapper.m-bottom-12
-        = f.number_field :value, required: true, class: 'field'
+        = f.number_field :value, required: true, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
         = f.label 'Value', class: 'label'
+        .field-wrapper--units USDT
 
-      .row.row--align-between.m-bottom-12
+      .row.row--align-between.row--15.m-bottom-12
         .column.column--align-center
-          .small 1 USDT ~ 0.0000000123 BTC
+          = image_tag 'loader.svg', height: '15px', data: { 'transaction-target' => 'loader' }
+          .small.hidden data-transaction-target="rate"
         .column.column--align-center
-          = image_tag 'exchange.svg', width: '15px'
+          = image_tag 'exchange.svg', height: '15px'
 
       .field-wrapper.m-bottom-24
-        = f.number_field :value, class: 'field'
+        = f.number_field :value, readonly: true, class: 'field', data: { 'transaction-target' => 'btcInput' }
+        .field-wrapper--units tBTC
 
-      h2.m-bottom-12 Wallet address
+      h2.m-bottom-24 Wallet address
       .field-wrapper.m-bottom-12
-        = f.number_field :address, required: true, class: 'field'
+        = f.text_field :address, required: true, class: 'field'
         = f.label 'Recepient address', class: 'label'
 
       .field-wrapper.m-bottom-24
