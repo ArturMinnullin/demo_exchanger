@@ -1,5 +1,4 @@
 .field-wrapper {
-  height: 34px;
   position: relative;
 
   &--units {
@@ -7,15 +6,6 @@
     right: 6px;
     top: 6px;
   }
-}
-
-.label {
-  display: block;
-  width: 100%;
-  transform: translate(12px, -28px);
-  transition: all 300ms ease;
-  text-align: left;
-  height: 0;
 }
 
 .field {
@@ -27,15 +17,8 @@
   height: 34px;
   padding: 0 12px;
   line-height: 30px;
-  position: relative;
 
   &:focus {
-    outline: none;
-  }
-
-  &:focus ~ label, &:hover ~ label, &:valid ~ label {
-    transform: translateY(-50px);
-    font-size: 12px;
     outline: none;
   }
 }
