@@ -4,13 +4,13 @@
     = form_for :transaction, url: transactions_path do |f|
       = f.hidden_field :exchange_rate, data: { 'transaction-target' => 'exchangeRate' }
 
-      .m-bottom-12
+      .m-bottom-24
         = f.label 'You sent', class: 'label'
         .field-wrapper
           = f.number_field :usdt_value, step: :any, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
-          .field-wrapper__units USDT
+          .field-wrapper__units.small USDT
 
-      .row.row--align-between.row--15.m-bottom-12
+      .row.row--align-between.row--height-15.m-bottom-24
         .column.column--align-center
           = image_tag 'loader.svg', height: '15px', data: { 'transaction-target' => 'loader' }
           .small.hidden data-transaction-target="rate"
@@ -18,23 +18,23 @@
           = image_tag 'exchange.svg', height: '15px'
 
       .m-bottom-24
-        = f.label 'You get'
+        = f.label 'You get', class: 'label'
         .field-wrapper
           = f.number_field :btc_value, readonly: true, class: 'field', data: { 'transaction-target' => 'btcInput' }
-          .field-wrapper__units tBTC
+          .field-wrapper__units.small tBTC
 
       h2.m-bottom-24 Wallet address
       .m-bottom-12
-        = f.label 'Recepient address'
+        = f.label 'Recepient address', class: 'label'
         = f.text_field :address, required: true, class: 'field'
 
-      .field-wrapper.m-bottom-12
-        = f.label 'Email'
+      .m-bottom-12
+        = f.label 'Email', class: 'label'
         = f.email_field :email, required: true, class: 'field'
 
-      .field-wrapper.m-bottom-24
-        = f.label :policy do
+      .m-bottom-24
+        .checkbox
           = f.check_box :policy
-          span< I agree with terms of use
+          = f.label :policy, 'I agree with terms of use'
 
       = f.submit 'Exchange now', class: 'button'

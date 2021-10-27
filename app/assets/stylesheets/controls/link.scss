@@ -1,0 +1,9 @@
+.link {
+  color: $blue;
+  text-decoration: none;
+  border-bottom: 1px solid $blue;
+
+  &:hover {
+    border-bottom: 1px solid transparent;
+  }
+}

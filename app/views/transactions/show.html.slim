@@ -1,29 +1,30 @@
 .main
-  .wrapper
-    .row.row--align-between
-      .column.column--vertical
+  .wrapper.wrapper--big
+    .row.row--align-between.m-bottom-30
+      .column.column--align-center
         h2 Transaction ##{@transaction.id}
-      .column.column--vertical
-        = link_to 'Back', new_transaction_path
+      .column.column--align-center
+        = link_to 'Back', new_transaction_path, class: 'link'
 
-    .row.row--align-between
+    .row.row--align-between.m-bottom-12
       .column.column--vertical
         h3 You sent
-        = "#{@transaction.usdt_value} USDT"
-      .column.column--vertical
+        = number_to_currency(@transaction.usdt_value, unit: 'USDT', format: "%n %u")
+      .column.column--vertical.right-aligned
         h3 You get
-        = @transaction.btc_value
-    .row.row--align-between
+        = number_to_currency(@transaction.btc_value, precision: 12, unit: 'tBTC', format: "%n %u")
+    .row.row--align-between.m-bottom-12
       .column.column--vertical
         h3 Exchange fee
-        = @transaction.exhange_fee
-      .column.column--vertical
+        = number_to_currency(@transaction.exhange_fee, precision: 12, unit: 'tBTC', format: "%n %u")
+      .column.column--vertical.right-aligned
         h3 Network fee
-        = @mine_fee
-    .row.row--align-between
+        = number_to_currency(@mine_fee, precision: 12, unit: 'tBTC', format: "%n %u")
+    .row.row--align-between.m-bottom-12
       .column.column--vertical
         h3 Recipient address
         = @transaction.address
+    .row.row--align-between.m-bottom-12
       .column.column--vertical
         h3 Email
         = @transaction.email

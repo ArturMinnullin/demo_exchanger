@@ -9,6 +9,10 @@
 .wrapper {
   width: 80%;
   max-width: 400px;
+
+  &--big {
+    max-width: 600px;
+  }
 }
 
 .row {
@@ -18,7 +22,7 @@
     justify-content: space-between;
   }
 
-  &--15 {
+  &--height-15 {
     height: 15px;
   }
 }
