@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   def new
+    @tx = Transaction.new
     @errors = {}
   end
 
@@ -9,13 +10,13 @@ class TransactionsController < ApplicationController
     paramz = tx_params.to_h.merge(btc_value: btc_value)
 
     contract = TransactionContract.new.call(paramz)
-    render_errors(contract.errors(full: true)) and return
+    render_errors(contract.errors) and return
 
-    tx = Transaction.new(contract.to_h)
-    tx.save
-    render_errors(tx.errors) and return
+    @tx = Transaction.new(contract.to_h)
+    @tx.save
+    render_errors(@tx.errors) and return
 
-    redirect_to transaction_path(tx.uid)
+    redirect_to transaction_path(@tx.uid)
   end
 
   def show

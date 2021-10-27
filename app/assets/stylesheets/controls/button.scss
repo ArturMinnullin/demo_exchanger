@@ -7,7 +7,15 @@
   color: white;
   border: none;
 
-  &:hover {
-    opacity: 0.8;
+  &:not(.button--disabled) {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &--disabled {
+    background-color: $greyDark;
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 }

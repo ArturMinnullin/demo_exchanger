@@ -1,13 +1,12 @@
 .main
   .wrapper data-controller="transaction"
     h2.m-bottom-24 Calculate amount
-    = form_for :transaction, url: transactions_path do |f|
-      = f.hidden_field :exchange_rate, data: { 'transaction-target' => 'exchangeRate' }
-
+    = form_for @tx do |f|
       .m-bottom-24
         = f.label 'You sent', class: 'label'
         .field-wrapper
-          = f.number_field :usdt_value, step: 0.01, class: @errors[:usdt_value].present? ? 'field field--error' : 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
+          = f.number_field :usdt_value, step: 0.01, class: @errors[:usdt_value].present? ? 'field field--error' : 'field',
+            data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
           .field-wrapper__units.small USDT
         .error = @errors[:usdt_value]
 
@@ -37,7 +36,7 @@
 
       .m-bottom-24
         .checkbox
-          = f.check_box :policy
-          = f.label :policy, 'I agree with terms of use'
+          input id="policy" type='checkbox' name='policy' data-action='change->transaction#check'
+          label for='policy' I agree with terms of use
 
-      = f.submit 'Exchange now', class: 'button'
+      = f.submit 'Exchange now', disabled: true, class: 'button button--disabled', data: { 'transaction-target' => 'submit' }

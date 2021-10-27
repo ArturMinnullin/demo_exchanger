@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['loader', 'rate', 'btcInput', 'usdtInput', 'exchangeRate']
+  static targets = ['loader', 'rate', 'btcInput', 'usdtInput', 'exchangeRate', 'submit']
   static values = { rate: Number }
 
   connect() {
@@ -19,5 +19,15 @@ export default class extends Controller {
   input() {
     this.btcInputTarget.value = this.usdtInputTarget.value * this.rateValue
     this.exchangeRateTarget.value = this.rateValue
+  }
+
+  check(e) {
+    if (e.target.checked) {
+      this.submitTarget.classList.remove('button--disabled')
+      this.submitTarget.disabled = false
+    } else {
+      this.submitTarget.classList.add('button--disabled')
+      this.submitTarget.disabled = true
+    }
   }
 }
