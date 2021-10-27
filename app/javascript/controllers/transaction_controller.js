@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['loader', 'rate', 'btcInput', 'usdtInput']
+  static targets = ['loader', 'rate', 'btcInput', 'usdtInput', 'exchangeRate']
   static values = { rate: Number }
 
   connect() {
@@ -17,6 +17,7 @@ export default class extends Controller {
   }
 
   input() {
-    this.btcInputTarget.value = this.usdtInputTarget.value * this.rateValue;
+    this.btcInputTarget.value = this.usdtInputTarget.value * this.rateValue
+    this.exchangeRateTarget.value = this.rateValue
   }
 }

@@ -1,10 +1,11 @@
 .main
   .form data-controller="transaction"
     h2.m-bottom-24 Calculate amount
-    = form_for :transaction do |f|
+    = form_for :transaction, url: transactions_path do |f|
+      = f.hidden_field :exchange_rate, data: { 'transaction-target' => 'exchangeRate' }
       .field-wrapper.m-bottom-12
         = f.label 'Amount'
-        = f.number_field :value, required: true, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
+        = f.number_field :usdt_value, step: :any, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
         .field-wrapper--units USDT
 
       .row.row--align-between.row--15.m-bottom-12
@@ -30,6 +31,6 @@
       .field-wrapper.m-bottom-24
         = f.label :policy do
           = f.check_box :policy
-          span I agree with terms of use
+          span< I agree with terms of use
 
-      = f.submit 'Next step', class: 'button'
+      = f.submit 'Exchange now', class: 'button'
