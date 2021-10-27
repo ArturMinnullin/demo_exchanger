@@ -1,10 +1,12 @@
 .field-wrapper {
   position: relative;
 
-  &--units {
+  &__units {
     position: absolute;
     right: 6px;
-    top: 6px;
+    top: 7px;
+    font-size: 0.8em;
+    color: grey;
   }
 }
 

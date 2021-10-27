@@ -1,7 +1,4 @@
 class CalculateTotalValue
-  EXCHANGER_FEE_PERCENT = 0.03
-  MINE_FEE = 0.000006
-
   def self.call(value, exchange_rate)
     new(value, exchange_rate).call
   end
@@ -14,6 +11,10 @@ class CalculateTotalValue
   end
 
   def call
-    value * exchange_rate * (1 - EXCHANGER_FEE_PERCENT) - MINE_FEE
+    # convert usdt value to btc, remove comission of exchanger, remove mine fee
+    result = value * exchange_rate * (1 - Transaction::EXCHANGE_FEE_RATIO) - Transaction::MINE_FEE
+    return 0 if result <= 0
+
+    result
   end
 end

@@ -1,0 +1,29 @@
+.main
+  .wrapper
+    .row.row--align-between
+      .column.column--vertical
+        h2 Transaction ##{@transaction.id}
+      .column.column--vertical
+        = link_to 'Back', new_transaction_path
+
+    .row.row--align-between
+      .column.column--vertical
+        h3 You sent
+        = "#{@transaction.usdt_value} USDT"
+      .column.column--vertical
+        h3 You get
+        = @transaction.btc_value
+    .row.row--align-between
+      .column.column--vertical
+        h3 Exchange fee
+        = @transaction.exhange_fee
+      .column.column--vertical
+        h3 Network fee
+        = @mine_fee
+    .row.row--align-between
+      .column.column--vertical
+        h3 Recipient address
+        = @transaction.address
+      .column.column--vertical
+        h3 Email
+        = @transaction.email

@@ -6,6 +6,11 @@
   width: 100%;
 }
 
+.wrapper {
+  width: 80%;
+  max-width: 400px;
+}
+
 .row {
   display: flex;
 
@@ -20,6 +25,10 @@
 
 .column {
   display: flex;
+
+  &--vertical {
+    flex-direction: column;
+  }
 
   &--align-center {
     align-items: center;

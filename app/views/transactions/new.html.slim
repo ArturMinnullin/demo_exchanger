@@ -1,12 +1,14 @@
 .main
-  .form data-controller="transaction"
+  .wrapper data-controller="transaction"
     h2.m-bottom-24 Calculate amount
     = form_for :transaction, url: transactions_path do |f|
       = f.hidden_field :exchange_rate, data: { 'transaction-target' => 'exchangeRate' }
-      .field-wrapper.m-bottom-12
-        = f.label 'Amount'
-        = f.number_field :usdt_value, step: :any, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
-        .field-wrapper--units USDT
+
+      .m-bottom-12
+        = f.label 'You sent', class: 'label'
+        .field-wrapper
+          = f.number_field :usdt_value, step: :any, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
+          .field-wrapper__units USDT
 
       .row.row--align-between.row--15.m-bottom-12
         .column.column--align-center
@@ -15,12 +17,14 @@
         .column.column--align-center
           = image_tag 'exchange.svg', height: '15px'
 
-      .field-wrapper.m-bottom-24
-        = f.number_field :btc_value, readonly: true, class: 'field', data: { 'transaction-target' => 'btcInput' }
-        .field-wrapper--units tBTC
+      .m-bottom-24
+        = f.label 'You get'
+        .field-wrapper
+          = f.number_field :btc_value, readonly: true, class: 'field', data: { 'transaction-target' => 'btcInput' }
+          .field-wrapper__units tBTC
 
       h2.m-bottom-24 Wallet address
-      .field-wrapper.m-bottom-12
+      .m-bottom-12
         = f.label 'Recepient address'
         = f.text_field :address, required: true, class: 'field'
 
