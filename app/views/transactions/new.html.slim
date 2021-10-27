@@ -7,7 +7,7 @@
       .m-bottom-24
         = f.label 'You sent', class: 'label'
         .field-wrapper
-          = f.number_field :usdt_value, step: :any, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
+          = f.number_field :usdt_value, step: 0.01, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
           .field-wrapper__units.small USDT
 
       .row.row--align-between.row--height-15.m-bottom-24
