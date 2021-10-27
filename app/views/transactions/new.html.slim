@@ -7,8 +7,9 @@
       .m-bottom-24
         = f.label 'You sent', class: 'label'
         .field-wrapper
-          = f.number_field :usdt_value, step: 0.01, class: 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
+          = f.number_field :usdt_value, step: 0.01, class: @errors[:usdt_value].present? ? 'field field--error' : 'field', data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
           .field-wrapper__units.small USDT
+        .error = @errors[:usdt_value]
 
       .row.row--align-between.row--height-15.m-bottom-24
         .column.column--align-center
@@ -26,11 +27,13 @@
       h2.m-bottom-24 Wallet address
       .m-bottom-12
         = f.label 'Recepient address', class: 'label'
-        = f.text_field :address, required: true, class: 'field'
+        = f.text_field :address, class: @errors[:address].present? ? 'field field--error' : 'field'
+        .error = @errors[:address]
 
       .m-bottom-12
         = f.label 'Email', class: 'label'
-        = f.email_field :email, required: true, class: 'field'
+        = f.email_field :email, class: @errors[:email].present? ? 'field field--error' : 'field'
+        .error = @errors[:email]
 
       .m-bottom-24
         .checkbox

@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   def new
+    @errors = {}
   end
 
   # Here we need to call exchange rate again to be more precise but I'm lazy
@@ -8,11 +9,11 @@ class TransactionsController < ApplicationController
     paramz = tx_params.to_h.merge(btc_value: btc_value)
 
     contract = TransactionContract.new.call(paramz)
-    render_errors(contract.errors)
+    render_errors(contract.errors(full: true)) and return
 
     tx = Transaction.new(contract.to_h)
     tx.save
-    render_errors(tx.errors)
+    render_errors(tx.errors) and return
 
     redirect_to transaction_path(tx.uid)
   end
