@@ -11,6 +11,8 @@ EDITOR="code --wait" bin/rails credentials:edit # set the private key for exchan
 ## Run
 ```sh
 rails s
+# or
+docker-compose up
 ```
 ### Admin panel
 ```sh
