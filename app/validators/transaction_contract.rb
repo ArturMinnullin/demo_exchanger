@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'bitcoin'
 
 class TransactionContract < Dry::Validation::Contract

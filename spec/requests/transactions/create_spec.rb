@@ -55,7 +55,8 @@ describe 'TransactionsController', type: :request do
     it 'redirects to show tx' do
       post(transactions_path, params: { transaction: params })
 
-      expect(response).to redirect_to(transaction_path('tx_id'))
+      tx = Transaction.last
+      expect(response).to redirect_to(transaction_path(tx.id))
     end
   end
 end
