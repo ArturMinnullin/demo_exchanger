@@ -13,8 +13,8 @@ module Tx
     end
 
     def call
-      btc = value * exchange_rate
-      exchange_fee = btc * Transaction::EXCHANGE_FEE_RATIO
+      btc = amount * exchange_rate
+      exchange_fee = btc * EXCHANGE_FEE_RATIO
       result_value = btc - exchange_fee - Transaction::MINE_FEE
       return OpenStruct.new(btc_value: 0, exchange_fee: 0) if result_value <= 0
 

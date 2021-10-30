@@ -11,6 +11,7 @@ class TransactionsController < ApplicationController
 
     if mutator.errors.present?
       @errors = mutator.errors
+      @tx = mutator.object
 
       render :new
     else
