@@ -15,12 +15,12 @@ class TransactionsController < ApplicationController
 
       render :new
     else
-      redirect_to transaction_path(@mutator.object.tx_id)
+      redirect_to transaction_path(@mutator.object.id)
     end
   end
 
   def show
-    @transaction = Transaction.find_by(tx_id: params[:id])
+    @transaction = Transaction.find(params[:id])
     @mine_fee = Transaction::MINE_FEE
   end
 
