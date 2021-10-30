@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
+gem 'blockchain-ruby'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dry-validation'
 gem 'jbuilder', '~> 2.7'
@@ -14,7 +15,6 @@ gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
-gem 'blockchain-ruby'
 
 gem 'slim'
 gem 'stimulus-rails'
@@ -34,11 +34,11 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

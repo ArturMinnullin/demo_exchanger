@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'bitcoin'
-require 'net/http';
-require 'json';
+require 'net/http'
+require 'json'
 
 module Tx
   class BroadcastToBlockchain
@@ -21,9 +21,9 @@ module Tx
     def call
       raise 'Error: balance is lower than transaction value' if inputs.sum(&:amount) < amount
 
-      tx = build_tx_with_fee
+      new_tx = build_tx_with_fee
       req = Net::HTTP.post(
-        URI("#{ESPLORA_API_BASE}/tx"), new_tx.payload.unpack("H*").first, 'Content-Type' => 'application/json'
+        URI("#{ESPLORA_API_BASE}/tx"), new_tx.payload.unpack1('H*'), 'Content-Type' => 'application/json'
       )
       return unless res.is_a?(Net::HTTPSuccess)
 
@@ -32,8 +32,9 @@ module Tx
 
     private
 
+    # rubocop:disable all
     def build_tx_with_fee
-      new_tx = build_tx do |t|
+      build_tx do |t|
         inputs.each do |input|
           t.input do |i|
             i.prev_out input.obj
@@ -49,7 +50,7 @@ module Tx
 
         unspents_total = inputs.sum(&:amount) / SATOSHIS_PER_BITCOIN
         change = unspents_total - amount
-        if change > 0
+        if change.positive?
           t.output do |o|
             o.value change * SATOSHIS_PER_BITCOIN
             o.script { |s| s.recipient address }
@@ -57,6 +58,7 @@ module Tx
         end
       end
     end
+    # rubocop:enable all
 
     def key
       @key ||= Bitcoin::Key.new(Rails.application.credentials[:exchange_private_key])

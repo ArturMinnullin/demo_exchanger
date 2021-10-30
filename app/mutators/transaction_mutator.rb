@@ -24,7 +24,7 @@ class TransactionMutator
   private
 
   def create_tx_in_blockhain
-    "tx_id"
+    'tx_id'
     # Tx::BroadcastToBlockchain.new(params).call
   end
 
@@ -37,7 +37,6 @@ class TransactionMutator
   end
 
   def attributes
-    binding.pry
     total = Tx::CalculateTotalValues.new(params[:usdt_value], exchange_rate).call
     params.merge(btc_value: total.btc_value, exchange_fee: total.exchange_fee)
   end
