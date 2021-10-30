@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # convert usdt value to btc, remove comission of exchanger, remove mine fee
 module Tx
   class CalculateTotalValues

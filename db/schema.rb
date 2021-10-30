@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,18 +12,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_144904) do
-
-  create_table "transactions", force: :cascade do |t|
-    t.decimal "usdt_value", null: false
-    t.decimal "exchange_rate", null: false
-    t.decimal "exchange_fee", null: false
-    t.string "tx_id", null: false
-    t.string "address", null: false
-    t.string "email", null: false
-    t.boolean "success", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+ActiveRecord::Schema.define(version: 20_211_027_144_904) do
+  create_table 'transactions', force: :cascade do |t|
+    t.decimal 'usdt_value', null: false
+    t.decimal 'exchange_rate', null: false
+    t.decimal 'exchange_fee', null: false
+    t.string 'tx_id', null: false
+    t.string 'address', null: false
+    t.string 'email', null: false
+    t.boolean 'success', default: false, null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
-
 end

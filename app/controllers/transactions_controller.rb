@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TransactionsController < ApplicationController
   def new
     @tx = Transaction.new

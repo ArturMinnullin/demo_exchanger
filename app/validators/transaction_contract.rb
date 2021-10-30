@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TransactionContract < Dry::Validation::Contract
   params do
     required(:usdt_value).filled(:float)
@@ -7,9 +9,7 @@ class TransactionContract < Dry::Validation::Contract
   end
 
   rule(:email) do
-    unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
-      key.failure('has invalid format')
-    end
+    key.failure('has invalid format') unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
   end
 
   rule(:btc_value) do
@@ -17,8 +17,6 @@ class TransactionContract < Dry::Validation::Contract
   end
 
   rule(:address) do
-    unless /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/i.match?(value)
-      key.failure('has invalid format')
-    end
+    key.failure('has invalid format') unless /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/i.match?(value)
   end
 end

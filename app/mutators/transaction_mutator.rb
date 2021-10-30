@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TransactionMutator
   attr_reader :params, :errors, :object
 
