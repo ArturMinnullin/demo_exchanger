@@ -4,33 +4,27 @@ class TransactionsController < ApplicationController
     @errors = {}
   end
 
-  # Here we need to call exchange rate again to be more precise but I'm lazy
   def create
-    btc_value = CalculateTotalValue.call(tx_params[:usdt_value], tx_params[:exchange_rate])
-    paramz = tx_params.to_h.merge(btc_value: btc_value)
+    mutator.build
 
-    contract = TransactionContract.new.call(paramz)
-    render_errors(contract.errors) and return
+    if mutator.errors.present?
+      @errors = mutator.errors
 
-    @tx = Transaction.new(contract.to_h)
-    @tx.save
-    render_errors(@tx.errors) and return
-
-    redirect_to transaction_path(@tx.uid)
+      render :new
+    else
+      redirect_to transaction_path(@mutator.object.tx_id)
+    end
   end
 
   def show
-    @transaction = Transaction.find_by(uid: params[:id])
+    @transaction = Transaction.find_by(tx_id: params[:id])
     @mine_fee = Transaction::MINE_FEE
   end
 
   private
 
-  def render_errors(errors)
-    return if errors.blank?
-
-    @errors = errors
-    render :new
+  def mutator
+    @mutator ||= TransactionMutator.new(tx_params)
   end
 
   def tx_params

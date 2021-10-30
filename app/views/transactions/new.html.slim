@@ -2,6 +2,8 @@
   .wrapper data-controller="transaction"
     h2.m-bottom-24 Calculate amount
     = form_for @tx do |f|
+      = f.hidden_field :exchange_rate, data: { 'transaction-target' => 'exchangeRate' }
+
       .m-bottom-24
         = f.label 'You sent', class: 'label'
         .field-wrapper
@@ -20,7 +22,7 @@
       .m-bottom-24
         = f.label 'You get', class: 'label'
         .field-wrapper
-          = f.number_field :btc_value, readonly: true, class: 'field', data: { 'transaction-target' => 'btcInput' }
+          input name='btc_value' readonly="true" class='field' data-transaction-target='btcInput'
           .field-wrapper__units.small tBTC
 
       h2.m-bottom-24 Wallet address
