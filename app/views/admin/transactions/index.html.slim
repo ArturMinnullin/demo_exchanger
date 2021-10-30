@@ -6,7 +6,7 @@
       th Total transactions
       th Total success transactions
     tr
-      td = @total_exchange_fee
+      td = "#{@total_exchange_fee} tBTC"
       td = @txs.count
       td = @successful_tx_count
 
@@ -29,5 +29,5 @@
         td = tx.tx_id
         td = tx.address
         td = tx.exchange_rate
-        td = tx.exchange_fee
+        td = "#{tx.exchange_fee} tBTC"
         td = tx.status

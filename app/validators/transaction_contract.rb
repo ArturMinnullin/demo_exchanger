@@ -2,11 +2,11 @@
 
 class TransactionContract < Dry::Validation::Contract
   params do
-    required(:usdt_value).value(:float).filled
-    required(:exchange_rate).value(:float).filled
-    required(:address).value(:string).filled
-    required(:email).value(:string).filled
-    required(:exchange_fee).value(:float).filled
+    required(:usdt_value).filled.value(:float)
+    required(:exchange_rate).filled.value(:float)
+    required(:address).filled.value(:string)
+    required(:email).filled.value(:string)
+    required(:exchange_fee).filled.value(:float)
   end
 
   rule(:usdt_value) do

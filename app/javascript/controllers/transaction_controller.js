@@ -5,10 +5,6 @@ export default class extends Controller {
   static values = { rate: Number }
 
   connect() {
-    if (this.checkboxTarget.checked) {
-      this.submitTarget.classList.remove('button--disabled')
-    }
-
     fetch('https://api.exchangerate.host/latest\?base\=USD\&symbols\=BTC')
       .then(response => response.json())
       .then(data => {

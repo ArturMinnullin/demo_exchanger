@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 describe 'TransactionsController', type: :request do
+  before do
+    allow_any_instance_of(Tx::BroadcastToBlockchain).to receive(:call).and_return('tx_id')
+  end
+
   context 'when user wants does not send usdt_value' do
     let(:params) do
       {
@@ -16,7 +20,7 @@ describe 'TransactionsController', type: :request do
       post(transactions_path, params: { transaction: params })
 
       expect(response).to render_template(:new)
-      expect(assigns(:errors)).to eq({ :usdt_value => ["must be less than 30"] })
+      expect(assigns(:errors)).to eq({ :usdt_value => ["is missing"] })
     end
   end
 
@@ -34,7 +38,7 @@ describe 'TransactionsController', type: :request do
       post(transactions_path, params: { transaction: params })
 
       expect(response).to render_template(:new)
-      expect(assigns(:errors)).to eq({ :usdt_value => ["is missing"] })
+      expect(assigns(:errors)).to eq({ :usdt_value => ["must be less than 30"] })
     end
   end
 
@@ -51,7 +55,7 @@ describe 'TransactionsController', type: :request do
     it 'redirects to show tx' do
       post(transactions_path, params: { transaction: params })
 
-      expect(response).to redirect_to(transaction_path('tx_id_123123'))
+      expect(response).to redirect_to(transaction_path('tx_id'))
     end
   end
 end

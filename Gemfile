@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
-gem 'blockchain-ruby'
+gem 'bitcoin-ruby'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dry-validation'
 gem 'jbuilder', '~> 2.7'

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_144904) do
     t.decimal "usdt_value", null: false
     t.decimal "exchange_rate", null: false
     t.decimal "exchange_fee", null: false
-    t.string "tx_id", null: false
+    t.string "tx_id"
     t.string "address", null: false
     t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false

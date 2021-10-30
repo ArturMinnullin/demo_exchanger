@@ -64,11 +64,10 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     bindex (0.8.1)
-    bitcoin-money (0.6.0)
-    blockchain-ruby (1.0.1)
-      bitcoin-money
-      monetize
-      money
+    bitcoin-ruby (0.0.20)
+      eventmachine
+      ffi
+      scrypt
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -120,7 +119,11 @@ GEM
       dry-initializer (~> 3.0)
       dry-schema (~> 1.8, >= 1.8.0)
     erubi (1.10.0)
+    eventmachine (1.2.7)
     ffi (1.15.4)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.10)
@@ -140,10 +143,6 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.14.4)
-    monetize (1.11.0)
-      money (~> 6.12)
-    money (6.16.0)
-      i18n (>= 0.6.4, <= 2)
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
@@ -246,6 +245,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scrypt (3.0.7)
+      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (4.0.3)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -299,7 +300,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
-  blockchain-ruby
+  bitcoin-ruby
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
