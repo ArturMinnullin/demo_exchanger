@@ -15,7 +15,7 @@ export default class extends Controller {
         this.rateTarget.innerText = `1 USDT ~ ${this.rateValue} BTC`
 
         if (this.usdtInputTarget.value) {
-          this.btcInputTarget.value = this.usdtInputTarget.value * this.rateValue
+          this.btcInputTarget.value = this.usdtInputTarget.value * this.rateValue - 0.000006
         }
       })
   }

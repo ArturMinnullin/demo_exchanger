@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/lian/bitcoin-ruby
+  revision: f9b817c946b3ef99c7652c318c155200aadc6489
+  branch: master
+  specs:
+    bitcoin-ruby (0.0.20)
+      eventmachine
+      ffi
+      scrypt
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,10 +74,6 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     bindex (0.8.1)
-    bitcoin-ruby (0.0.20)
-      eventmachine
-      ffi
-      scrypt
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -300,7 +306,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
-  bitcoin-ruby
+  bitcoin-ruby!
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)

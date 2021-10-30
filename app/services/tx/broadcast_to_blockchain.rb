@@ -11,7 +11,7 @@ module Tx
 
     include Bitcoin::Builder
 
-    attr_reader :amount
+    attr_reader :amount, :address
 
     def initialize(amount, address)
       @amount = amount
@@ -21,19 +21,19 @@ module Tx
     def call
       raise 'Error: balance is lower than transaction value' if inputs.sum(&:amount) < amount
 
-      new_tx = build_tx_with_fee
-      req = Net::HTTP.post(
+      new_tx = build_new_tx
+      res = Net::HTTP.post(
         URI("#{ESPLORA_API_BASE}/tx"), new_tx.payload.unpack1('H*'), 'Content-Type' => 'application/json'
       )
       return unless res.is_a?(Net::HTTPSuccess)
 
-      req.body.hash
+      res.body.hash
     end
 
     private
 
     # rubocop:disable all
-    def build_tx_with_fee
+    def build_new_tx
       build_tx do |t|
         inputs.each do |input|
           t.input do |i|
@@ -44,16 +44,16 @@ module Tx
         end
 
         t.output do |o|
-          o.value (amount - Transaction::MINE_FEE) * SATOSHIS_PER_BITCOIN
-          o.script { |s| s.recipient to }
+          o.value amount * SATOSHIS_PER_BITCOIN
+          o.script { |s| s.recipient address }
         end
 
         unspents_total = inputs.sum(&:amount) / SATOSHIS_PER_BITCOIN
-        change = unspents_total - amount
+        change = unspents_total - amount - Transaction::MINE_FEE
         if change.positive?
           t.output do |o|
             o.value change * SATOSHIS_PER_BITCOIN
-            o.script { |s| s.recipient address }
+            o.script { |s| s.recipient key.addr }
           end
         end
       end
@@ -72,7 +72,7 @@ module Tx
     end
 
     def unspent_tx_list
-      res = Net::HTTP.get_response(URI("#{ESPLORA_API_BASE}/address/#{key.address}/utxo"))
+      res = Net::HTTP.get_response(URI("#{ESPLORA_API_BASE}/address/#{key.addr}/utxo"))
       raise "Can't fetch utxo" unless res.is_a?(Net::HTTPSuccess)
 
       JSON.parse(res.body)

@@ -11,14 +11,12 @@ class TransactionMutator
 
   def build
     contract = TransactionContract.new.call(attributes.to_h)
-
     if contract.errors.present?
       @errors = contract.errors.to_h
       return
     end
 
-    # tx_id = Tx::BroadcastToBlockchain.new(total.btc_value, params[:address]).call
-    tx_id = 'tx_id'
+    tx_id = Tx::BroadcastToBlockchain.new(total.btc_value, params[:address]).call
     create_in_db(contract.to_h.merge(tx_id: tx_id))
   end
 
