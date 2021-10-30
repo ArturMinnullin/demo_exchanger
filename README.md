@@ -1,24 +1,23 @@
-# README
+# Demoexchanger
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on rails project to exchange usdt to btc
 
-Things you may want to cover:
+## Installation
+```sh
+bundle
+rake db:migrate
+EDITOR="code --wait" bin/rails credentials:edit # set the private key for exchanger
+```
+## Run
+```sh
+rails s
+```
+### Admin panel
+```sh
+localhost:3000/admin/transactions # admin/password
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run tests
+```sh
+bundle exec rspec
+```

@@ -11,7 +11,7 @@ describe 'TransactionsController', type: :request do
     let(:params) do
       {
         exchange_rate: 0.00001,
-        address: '1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY',
+        address: 'tb1q0v47kzs36at4r43n7m0pukc6zmrftulelz32azlda76avycf6vwqj5wtm2',
         email: 'test@email.com'
       }
     end
@@ -29,7 +29,7 @@ describe 'TransactionsController', type: :request do
       {
         usdt_value: 31,
         exchange_rate: 0.00001,
-        address: '1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY',
+        address: 'tb1q0v47kzs36at4r43n7m0pukc6zmrftulelz32azlda76avycf6vwqj5wtm2',
         email: 'test@email.com'
       }
     end
@@ -47,7 +47,7 @@ describe 'TransactionsController', type: :request do
       {
         usdt_value: 22,
         exchange_rate: 0.00001,
-        address: '1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY',
+        address: 'tb1q0v47kzs36at4r43n7m0pukc6zmrftulelz32azlda76avycf6vwqj5wtm2',
         email: 'test@email.com'
       }
     end
