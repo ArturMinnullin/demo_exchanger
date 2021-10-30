@@ -1,0 +1,23 @@
+.admin-wrapper {
+  width: 95%;
+  min-width: 800px;
+  margin: 40px auto 0;
+
+  table {
+    width: 100%;
+    border: 1px solid $greyDark;
+	  border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  table th {
+    padding: 5px;
+    background: $grey;
+    border: 1px solid $greyDark;
+  }
+
+  table td {
+    border: 1px solid $greyDark;
+    padding: 5px;
+  }
+}

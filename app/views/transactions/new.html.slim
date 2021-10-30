@@ -10,7 +10,7 @@
           = f.number_field :usdt_value, step: 0.01, class: @errors[:usdt_value].present? ? 'field field--error' : 'field',
             data: { 'transaction-target' => 'usdtInput', action: 'input->transaction#input' }
           .field-wrapper__units.small USDT
-        .error = @errors[:usdt_value]
+        .error = @errors[:usdt_value].try(:first)
 
       .row.row--align-between.row--height-15.m-bottom-24
         .column.column--align-center
@@ -29,16 +29,16 @@
       .m-bottom-12
         = f.label 'Recepient address', class: 'label'
         = f.text_field :address, class: @errors[:address].present? ? 'field field--error' : 'field'
-        .error = @errors[:address]
+        .error = @errors[:address].try(:first)
 
       .m-bottom-12
         = f.label 'Email', class: 'label'
         = f.email_field :email, class: @errors[:email].present? ? 'field field--error' : 'field'
-        .error = @errors[:email]
+        .error = @errors[:email].try(:first)
 
       .m-bottom-24
         .checkbox
-          input id="policy" type='checkbox' name='policy' data-action='change->transaction#check'
+          input id="policy" type='checkbox' name='policy' data-action='change->transaction#check' data-transaction-target='checkbox'
           label for='policy' I agree with terms of use
 
       = f.submit 'Exchange now', disabled: true, class: 'button button--disabled', data: { 'transaction-target' => 'submit' }

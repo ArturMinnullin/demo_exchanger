@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_10_27_144904) do
     t.string "tx_id", null: false
     t.string "address", null: false
     t.string "email", null: false
-    t.boolean "success", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

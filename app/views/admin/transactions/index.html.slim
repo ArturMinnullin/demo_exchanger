@@ -1,1 +1,33 @@
-h1 qwe
+.admin-wrapper
+  h2 Statistics
+  table
+    tr
+      th Total exchange fee
+      th Total transactions
+      th Total success transactions
+    tr
+      td = @total_exchange_fee
+      td = @txs.count
+      td = @successful_tx_count
+
+  h2 Transactions
+  table
+    tr
+      th id
+      th data/time
+      th e-mail
+      th txid
+      th to
+      th exchange rate
+      th exchange fee
+      th status
+    - @txs.each do |tx|
+      tr
+        td = tx.id
+        td = tx.created_at.strftime('%D %R')
+        td = tx.email
+        td = tx.tx_id
+        td = tx.address
+        td = tx.exchange_rate
+        td = tx.exchange_fee
+        td = tx.status

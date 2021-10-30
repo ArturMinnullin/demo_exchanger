@@ -3,7 +3,9 @@
 module Admin
   class TransactionsController < AdminBaseController
     def index
-      @transactions = Transaction.order(:created_at)
+      @txs = Transaction.order(:created_at)
+      @successful_tx_count = @txs.success.count
+      @total_exchange_fee = @txs.sum(:exchange_fee)
     end
   end
 end

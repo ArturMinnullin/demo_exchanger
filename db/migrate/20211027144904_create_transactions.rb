@@ -9,7 +9,6 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.string :tx_id, null: false
       t.string :address, null: false
       t.string :email, null: false
-      t.boolean :success, default: false, null: false
 
       t.timestamps
     end

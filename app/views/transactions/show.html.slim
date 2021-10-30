@@ -16,7 +16,7 @@
     .row.row--align-between.m-bottom-12
       .column.column--vertical
         h3 Exchange fee
-        = number_to_currency(@transaction.exhange_fee, precision: 12, unit: 'tBTC', format: "%n %u")
+        = number_to_currency(@transaction.exchange_fee, precision: 12, unit: 'tBTC', format: "%n %u")
       .column.column--vertical.right-aligned
         h3 Network fee
         = number_to_currency(@mine_fee, precision: 12, unit: 'tBTC', format: "%n %u")
